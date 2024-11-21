@@ -2,7 +2,7 @@ import { createClient } from '@/prismicio';
 import { PrismicNextLink } from '@prismicio/next';
 import Link from 'next/link';
 import Bounded from '@/components/Bounded';
-import Logo from "@/components/Logo"
+import Logo from '@/components/Logo';
 
 export const Header = async () => {
   const client = createClient();
@@ -16,10 +16,12 @@ export const Header = async () => {
         </Link>
 
         <nav>
-          <ul className="flex ">
+          <ul className='flex'>
             {settings.data.navigation.map(({ link, label }) => (
               <li key={label}>
-                <PrismicNextLink field={link} className="py-3 p-3">{label}</PrismicNextLink>
+                <PrismicNextLink field={link} className='py-3 p-3'>
+                  {label}
+                </PrismicNextLink>
               </li>
             ))}
           </ul>
