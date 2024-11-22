@@ -3,7 +3,6 @@ import { SliceZone } from '@prismicio/react';
 
 import { createClient } from '@/prismicio';
 import { components } from '@/slices';
-import { LanguageSwitcher } from '@/components/LanguageSwitcher';
 import { Header } from '@/components/Header';
 
 export async function generateMetadata({
