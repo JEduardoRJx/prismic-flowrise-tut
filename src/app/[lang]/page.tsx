@@ -3,6 +3,8 @@ import { SliceZone } from '@prismicio/react';
 
 import { createClient } from '@/prismicio';
 import { components } from '@/slices';
+import { LanguageSwitcher } from '@/components/LanguageSwitcher';
+import { Header } from '@/components/Header';
 
 export async function generateMetadata({
   params,
@@ -24,5 +26,10 @@ export default async function Page({ params }: { params: { lang: string } }) {
   const client = createClient();
   const page = await client.getSingle('homepage', { lang });
 
-  return <SliceZone slices={page.data.slices} components={components} />;
+  return (
+    <>
+      <Header lang={lang} />
+      <SliceZone slices={page.data.slices} components={components} />;
+    </>
+  );
 }

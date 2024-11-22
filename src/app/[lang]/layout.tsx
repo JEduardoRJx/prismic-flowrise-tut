@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import './globals.css';
+import '@/app/globals.css';
 import clsx from 'clsx';
 import { Nunito, Nunito_Sans } from 'next/font/google';
 import { createClient, repositoryName } from '@/prismicio';
@@ -33,15 +33,19 @@ export const generateMetadata = async (): Promise<Metadata> => {
   };
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
-}: Readonly<{
+  params,
+}: {
   children: React.ReactNode;
-}>) {
+  params: { lang: string };
+}) {
+  const { lang } = await params;
+
   return (
     <html className={clsx(nunito.variable, nunitoSans.variable)}>
       <body>
-        <Header />
+        {/* <Header lang={lang} /> */}
         {children}
         <Footer />
         <div className='fixed bg-gradient-to-tr from-emerald-50 to-cyan-50 z-[-1] inset-0 opcatiy-50' />

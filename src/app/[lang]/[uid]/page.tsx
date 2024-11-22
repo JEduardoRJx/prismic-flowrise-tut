@@ -4,6 +4,7 @@ import { SliceZone } from '@prismicio/react';
 import * as prismic from '@prismicio/client';
 import { createClient } from '@/prismicio';
 import { components } from '@/slices';
+import { Header } from '@/components/Header';
 
 type Params = { uid: string; lang: string };
 
@@ -13,7 +14,6 @@ export async function generateMetadata({
   params: Promise<Params>;
 }): Promise<Metadata> {
   const { uid, lang } = await params;
-  console.log('ay', lang);
   const client = createClient();
   const page = await client
     .getByUID('page', uid, { lang })
@@ -32,7 +32,12 @@ export default async function Page({ params }: { params: Promise<Params> }) {
     .getByUID('page', uid, { lang })
     .catch(() => notFound());
 
-  return <SliceZone slices={page.data.slices} components={components} />;
+  return (
+    <>
+      <Header lang={lang} uid={uid} />
+      <SliceZone slices={page.data.slices} components={components} />
+    </>
+  );
 }
 
 export async function generateStaticParams() {
