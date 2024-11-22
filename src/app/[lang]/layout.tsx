@@ -34,13 +34,9 @@ export const generateMetadata = async (): Promise<Metadata> => {
 
 export default async function RootLayout({
   children,
-  params,
 }: {
   children: React.ReactNode;
-  params: { lang: string };
 }) {
-  const { lang } = await params;
-
   return (
     <html className={clsx(nunito.variable, nunitoSans.variable)}>
       <body>
